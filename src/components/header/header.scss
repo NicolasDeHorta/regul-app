@@ -1,0 +1,42 @@
+.headerWrapper {
+	font-size: 1.2rem;
+}
+
+.logo {
+	margin: 20px;
+	padding: 0.1rem;
+	--logo-size: 90px;
+	width: calc(var(--logo-size) * 2.99);
+	height: calc(var(--logo-size));
+	background: url('../../assets/img/regul-logo.gif') no-repeat;
+	background-size: cover;
+}
+
+.navigation {
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
+	margin-bottom: 5px;
+	background-color: var(--backgroundPrimaryColor);
+
+	ul {
+		list-style: none;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+	}
+	li {
+		margin: 5px;
+		border-radius: 5px;
+		padding: 10px;
+		cursor: pointer;
+		transition: background-color 100ms ease-in-out;
+
+		&:hover {
+			background-color: var(--backgroundAccentColor);
+		}
+	}
+	a {
+		text-decoration: none;
+		color: white;
+	}
+}

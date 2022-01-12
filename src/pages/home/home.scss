@@ -1,0 +1,14 @@
+.midWrapper {
+	display: grid;
+	align-items: center;
+	grid-template-columns: auto max-content;
+}
+
+.imgCambio {
+	img {
+		margin: 2rem;
+		width: 60vh;
+		height: 50vh;
+		object-fit: cover;
+	}
+}

@@ -1,0 +1,36 @@
+:root {
+	--backgroundPrimaryColor: rgb(39, 39, 39);
+	--backgroundAccentColor: rgb(70, 69, 69);
+	background-color: #282c34;
+}
+
+.App {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	position: relative;
+	text-align: center;
+	flex-direction: column;
+	color: white;
+}
+
+:root::before {
+	content: '';
+	background: url('./assets/img/regul-background.gif');
+	background-size: cover;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	opacity: 0.3;
+}
+
+.AppBody {
+	position: relative;
+	color: #ffffff;
+	line-height: 0.9;
+	text-align: center;
+	width: 80%;
+}
