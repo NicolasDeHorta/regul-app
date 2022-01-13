@@ -3,7 +3,6 @@ import './footer.scss';
 export const Footer = () => {
 	return (
 		<div className="footerWrapper">
-			<div className="footerTopDiv">Cambio Regul</div>
 			<div className="footerMiddleDiv">
 				<div>
 					Casa Central <br />
@@ -16,7 +15,6 @@ export const Footer = () => {
 					Teléfono: 2508 1515*
 				</div>
 			</div>
-			<div className="footerBottomDiv"></div>
 			<p>
 				Corresponsal Financiero, esta entidad se encuentra habilitada a
 				prestar servicios de recepción de fondos con el único fin de ser

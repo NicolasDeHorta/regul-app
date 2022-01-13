@@ -2,13 +2,14 @@
 	display: grid;
 	align-items: center;
 	grid-template-columns: auto max-content;
+	background-color: var(--secondaryBackgroundColor);
 }
 
 .imgCambio {
 	img {
-		margin: 2rem;
-		width: 60vh;
-		height: 50vh;
+		margin: 2rem 0;
+		width: 80vh;
+		height: 60vh;
 		object-fit: cover;
 	}
 }

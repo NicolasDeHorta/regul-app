@@ -1,12 +1,19 @@
 .cotizacionesWrapper {
 	padding: 1rem;
-	margin: 1rem;
+	margin: 1rem 5rem;
 	border: solid gray 1px;
 	display: inline-flex;
 	flex-direction: column;
 	justify-content: center;
 	border-radius: 1rem;
 	font-size: 1.1rem;
+	background: var(--backgroundPrimaryColor);
+	opacity: 0.8;
+	transition: opacity 150ms ease-in;
+
+	&:hover {
+		opacity: 1;
+	}
 }
 
 table {

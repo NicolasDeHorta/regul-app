@@ -27,6 +27,17 @@ const initialCotizacionesState = [
 export const Cotizaciones = () => {
 	const [cotizaciones, setCotizaciones] = useState(initialCotizacionesState);
 
+	const [userLogin, setuserLogin] = useState(true);
+
+	const handleAddCotizacion = (moneda, compra, venta) => {
+		const newCotizacion = {
+			moneda: moneda,
+			compra: compra,
+			venta: venta,
+		};
+
+		setCotizaciones([...cotizaciones, newCotizacion]);
+	};
 	return (
 		<div className="cotizacionesWrapper">
 			<table>
@@ -40,13 +51,21 @@ export const Cotizaciones = () => {
 						return (
 							<tr>
 								<td>{moneda.moneda}</td>
-								<td>{moneda.compra}</td>
-								<td>{moneda.venta}</td>
+								<td>{moneda.compra.toFixed(2)}</td>
+								<td>{moneda.venta.toFixed(2)}</td>
 							</tr>
 						);
 					})}
 				</tbody>
 			</table>
+
+			{userLogin ? (
+				<button onClick={() => handleAddCotizacion('Yen', 55, 32)}>
+					Agregar
+				</button>
+			) : (
+				''
+			)}
 		</div>
 	);
 };

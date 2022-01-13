@@ -1,10 +1,14 @@
 import { Link, NavLink } from 'react-router-dom';
+import { Logo } from '../logo/Logo';
 import './header.scss';
 
 export const Header = () => {
 	return (
 		<div className="headerWrapper">
-			<div className="logo"></div>
+			{/* <div className="logo"></div> */}
+			<div className="logo">
+				<Logo />
+			</div>
 			<div className="navigation">
 				<ul>
 					<li>

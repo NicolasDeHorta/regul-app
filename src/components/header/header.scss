@@ -3,13 +3,8 @@
 }
 
 .logo {
-	margin: 20px;
-	padding: 0.1rem;
-	--logo-size: 90px;
-	width: calc(var(--logo-size) * 2.99);
-	height: calc(var(--logo-size));
-	background: url('../../assets/img/regul-logo.gif') no-repeat;
-	background-size: cover;
+	transform: translateX(-100%);
+	transform: scale(0.7);
 }
 
 .navigation {
@@ -19,6 +14,7 @@
 	background-color: var(--backgroundPrimaryColor);
 
 	ul {
+		margin: 0;
 		list-style: none;
 		display: flex;
 		flex-direction: row;
@@ -27,7 +23,7 @@
 	li {
 		margin: 5px;
 		border-radius: 5px;
-		padding: 10px;
+		padding: 10px 30px;
 		cursor: pointer;
 		transition: background-color 100ms ease-in-out;
 

@@ -1,7 +1,11 @@
 :root {
-	--backgroundPrimaryColor: rgb(39, 39, 39);
-	--backgroundAccentColor: rgb(70, 69, 69);
+	--backgroundPrimaryColor: rgba(22, 22, 22, 0.8);
+	--backgroundAccentColor: rgba(47, 47, 47, 0.8);
+	--secondaryBackgroundColor: #00000033;
 	background-color: #282c34;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 .App {
