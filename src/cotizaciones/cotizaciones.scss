@@ -8,11 +8,10 @@
 	border-radius: 1rem;
 	font-size: 1.1rem;
 	background: var(--backgroundPrimaryColor);
-	opacity: 0.8;
-	transition: opacity 150ms ease-in;
+	transition: background 150ms ease-in;
 
 	&:hover {
-		opacity: 1;
+		background: var(--backgroundPrimaryColorOpaque);
 	}
 }
 

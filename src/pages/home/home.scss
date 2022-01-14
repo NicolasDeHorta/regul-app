@@ -1,15 +1,30 @@
 .midWrapper {
-	display: grid;
+	display: flex;
+	flex-flow: row wrap-reverse;
 	align-items: center;
+	justify-content: center;
 	grid-template-columns: auto max-content;
 	background-color: var(--secondaryBackgroundColor);
 }
 
 .imgCambio {
 	img {
-		margin: 2rem 0;
-		width: 80vh;
-		height: 60vh;
 		object-fit: cover;
+		width: 60%;
+		margin: 2rem 0;
+		border-radius: 2rem;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.navigation {
+		width: 100%;
+		background-color: var(--backgroundPrimaryColorOpaque);
+	}
+
+	.imgCambio {
+		img {
+			width: 80%;
+		}
 	}
 }

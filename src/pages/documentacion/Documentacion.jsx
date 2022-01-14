@@ -2,11 +2,16 @@ import React from 'react';
 import { Header } from '../../components/header/Header';
 import { Footer } from '../../components/footer/Footer';
 
-export const About = () => {
+import './documentacion.scss';
+
+export const Documentacion = () => {
 	return (
 		<div>
 			<Header />
-			This is the About Page
+			<div className="documentacionWrapper">
+				<div>i'm the docs page</div>
+				<div>here are some files</div>
+			</div>
 			<Footer />
 		</div>
 	);

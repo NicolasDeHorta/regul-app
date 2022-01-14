@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './pages/home/Home';
-import { About } from './pages/about/About';
 import { Contact } from './pages/contact/Contact';
+import { Documentacion } from './pages/documentacion/Documentacion';
 
 import './App.scss';
 
@@ -11,9 +11,11 @@ function App() {
 			<div className="AppBody">
 				<BrowserRouter basename={window.location.pathname || ''}>
 					<Routes>
-						<Route path="/about" element={<About />} />
+						<Route
+							path="/documentacion"
+							element={<Documentacion />}
+						/>
 						<Route path="/contact" element={<Contact />} />
-						{/* <Route path="/documentacion" element={<Documentacion />} /> */}
 						<Route path="/" element={<Home />} />
 					</Routes>
 				</BrowserRouter>

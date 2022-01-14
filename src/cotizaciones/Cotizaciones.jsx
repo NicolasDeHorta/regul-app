@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDataStore } from '../components/context/context';
 import './cotizaciones.scss';
 
 const initialCotizacionesState = [
@@ -25,9 +26,8 @@ const initialCotizacionesState = [
 ];
 
 export const Cotizaciones = () => {
+	const { adminMode } = useDataStore();
 	const [cotizaciones, setCotizaciones] = useState(initialCotizacionesState);
-
-	const [userLogin, setuserLogin] = useState(true);
 
 	const handleAddCotizacion = (moneda, compra, venta) => {
 		const newCotizacion = {
@@ -59,12 +59,10 @@ export const Cotizaciones = () => {
 				</tbody>
 			</table>
 
-			{userLogin ? (
+			{adminMode && (
 				<button onClick={() => handleAddCotizacion('Yen', 55, 32)}>
 					Agregar
 				</button>
-			) : (
-				''
 			)}
 		</div>
 	);

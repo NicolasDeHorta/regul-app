@@ -26,3 +26,9 @@
 	align-items: center;
 	line-height: 1.4rem;
 }
+
+@media only screen and (max-width: 800px) {
+	.footerWrapper {
+		padding: 0 1rem 1rem;
+	}
+}

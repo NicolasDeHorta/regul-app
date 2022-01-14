@@ -17,6 +17,7 @@
 
 .logoWrapper {
 	display: flex;
+	justify-content: center;
 	align-items: center;
 }
 
@@ -159,4 +160,10 @@
 /* Clip the sphere a bit */
 .clip {
 	clip-path: circle(48%);
+}
+
+@media only screen and (max-width: 800px) {
+	.logoText {
+		font-size: 2.3rem;
+	}
 }

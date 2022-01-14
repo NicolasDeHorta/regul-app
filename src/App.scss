@@ -1,11 +1,15 @@
-:root {
-	--backgroundPrimaryColor: rgba(22, 22, 22, 0.8);
-	--backgroundAccentColor: rgba(47, 47, 47, 0.8);
-	--secondaryBackgroundColor: #00000033;
-	background-color: #282c34;
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+:root {
+	--backgroundPrimaryColor: rgba(22, 22, 22, 0.8);
+	--backgroundPrimaryColorOpaque: rgba(22, 22, 22);
+	--backgroundAccentColor: rgba(47, 47, 47, 0.8);
+	--secondaryBackgroundColor: #00000033;
+	background-color: #282c34;
 }
 
 .App {
@@ -37,4 +41,10 @@
 	line-height: 0.9;
 	text-align: center;
 	width: 80%;
+}
+
+@media only screen and (max-width: 800px) {
+	.AppBody {
+		width: 100%;
+	}
 }
