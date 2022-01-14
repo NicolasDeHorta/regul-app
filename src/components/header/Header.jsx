@@ -1,14 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Logo } from '../logo/Logo';
-import { useDataStore } from '../context/context';
+import { AccessForm } from '../accessForm/AccessForm';
 import './header.scss';
 
 export const Header = () => {
-	const { adminMode, adminAccess } = useDataStore();
-
 	return (
 		<div className="headerWrapper">
-			{/* <div className="logo"></div> */}
+			<AccessForm />
 			<div className="logo">
 				<Logo />
 			</div>
@@ -26,9 +24,6 @@ export const Header = () => {
 						<li>Contact</li>
 					</Link>
 				</ul>
-			</div>
-			<div className="loginBtn" onClick={adminAccess}>
-				{!adminMode ? 'Access' : 'Log out'}
 			</div>
 		</div>
 	);
