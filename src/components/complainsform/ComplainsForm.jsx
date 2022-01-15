@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-import './contactForm.scss';
+import './complainsForm.scss';
 
 const formInitialState = {
 	name: '',
@@ -11,7 +12,7 @@ const formInitialState = {
 	msg: '',
 };
 
-export const ContactForm = () => {
+export const ComplainsForm = () => {
 	const [contactInfo, setContactInfo] = useState(formInitialState);
 
 	const handleInfoChange = ({ target }) => {
@@ -24,7 +25,7 @@ export const ContactForm = () => {
 	};
 
 	const sendMail = () => {
-		console.log(contactInfo);
+		axios.post('http://localhost:5000/sendComplain', contactInfo);
 	};
 
 	const { name, lastname, mail, phone, company, msg } = contactInfo;

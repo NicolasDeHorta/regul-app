@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDataStore } from '../components/context/context';
+import { useDataStore } from '../context/context';
 import './cotizaciones.scss';
 
 const initialCotizacionesState = [

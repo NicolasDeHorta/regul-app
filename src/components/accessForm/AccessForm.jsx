@@ -1,36 +1,52 @@
 import React, { useState } from 'react';
 import { useDataStore } from '../context/context';
+import { auth } from '../../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import './accessForm.scss';
 
 export const AccessForm = () => {
-	const [user, setUser] = useState('');
+	const [mail, setMail] = useState('');
 	const [pass, setPass] = useState('');
+	const [errormsg, setErrormsg] = React.useState(false);
 
-	const handleUserInput = (event) => {
-		setUser(event.target.value);
+	const handleMailInput = (event) => {
+		setMail(event.target.value);
 	};
 
 	const handlePassInput = (event) => {
 		setPass(event.target.value);
 	};
 
-	const handleSubmit = () => {
-		setUser('');
-		setPass('');
-		adminAccess(user, pass);
+	const handleSubmit = async () => {
+		if (mail && pass) {
+			try {
+				const user = await signInWithEmailAndPassword(auth, mail, pass);
+				if (user) {
+					adminAccess();
+					setMail('');
+					setPass('');
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
+
+	const handleLogout = () => {
+		adminLogout();
 	};
 
 	const { adminMode, adminAccess, adminLogout } = useDataStore();
 	return (
-		<div className="accessInputs">
+		<div className={`accessInputs ${!adminMode ? 'darkInputs' : ''}`}>
 			{!adminMode ? (
 				<>
 					<input
 						type="text"
-						placeholder="username"
-						value={user}
-						onChange={handleUserInput}
+						placeholder="email"
+						value={mail}
+						onChange={handleMailInput}
 					/>
 					<input
 						type="text"
@@ -38,12 +54,15 @@ export const AccessForm = () => {
 						value={pass}
 						onChange={handlePassInput}
 					/>
+					{errormsg && (
+						<p className="errormsg">Incorrect mail or password</p>
+					)}
 					<div className="loginBtn" onClick={handleSubmit}>
 						Access
 					</div>
 				</>
 			) : (
-				<div className="logoutBtn" onClick={adminLogout}>
+				<div className="logoutBtn" onClick={handleLogout}>
 					Logout
 				</div>
 			)}

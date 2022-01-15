@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Logo } from '../logo/Logo';
 import { AccessForm } from '../accessForm/AccessForm';
 import './header.scss';
@@ -15,13 +15,15 @@ export const Header = () => {
 					<Link to="/">
 						<li>Home</li>
 					</Link>
-
 					<Link to="/documentacion">
 						<li>Documentacion</li>
 					</Link>
 
-					<Link to="/contact">
+					<Link to="/contact-form">
 						<li>Contact</li>
+					</Link>
+					<Link to="/complains-form">
+						<li>Formulario de quejas</li>
 					</Link>
 				</ul>
 			</div>

@@ -1,6 +1,6 @@
 import { Header } from '../../components/header/Header';
 import { Footer } from '../../components/footer/Footer';
-import { Cotizaciones } from '../../cotizaciones/Cotizaciones';
+import { Cotizaciones } from '../../components/cotizaciones/Cotizaciones';
 import cambio18img from '../../assets/img/cambio18.jpg';
 
 import './home.scss';

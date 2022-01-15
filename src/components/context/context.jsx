@@ -1,12 +1,6 @@
 import * as React from 'react';
 
-const loginInfo = {
-	user: 'admin',
-	pass: 'admin',
-};
-
 const DataStore = React.createContext();
-
 export const useDataStore = () => {
 	return React.useContext(DataStore);
 };
@@ -14,18 +8,16 @@ export const useDataStore = () => {
 export const ContextProvider = ({ children }) => {
 	const [adminMode, setAdminMode] = React.useState(false);
 
-	const adminAccess = (user, password) => {
-		if (user === loginInfo.user && password === loginInfo.pass) {
-			setAdminMode(true);
-		}
+	const adminAccess = () => {
+		setAdminMode(true);
 	};
 
-	const adminLogout = (user, password) => {
+	const adminLogout = () => {
 		setAdminMode(false);
 	};
 
 	return (
-		<DataStore.Provider value={{ adminMode, adminAccess, adminLogout }}>
+		<DataStore.Provider value={{ adminAccess, adminLogout, adminMode }}>
 			{children}
 		</DataStore.Provider>
 	);
