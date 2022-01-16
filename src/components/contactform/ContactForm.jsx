@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { db } from "../../firebase";
+import emailjs from "@emailjs/browser";
+import { collection, query, onSnapshot } from "firebase/firestore";
 
 import "./contactForm.scss";
 
 const formInitialState = {
-  name: "",
-  lastname: "",
+  from_name: "",
+  from_lastname: "",
   company: "",
-  mail: "",
+  email: "",
   phone: "",
   msg: "",
 };
 
 export const ContactForm = () => {
+  const [mailCredentials, setMailCredentials] = useState({});
   const [contactInfo, setContactInfo] = useState(formInitialState);
+  const form = useRef();
 
   const handleInfoChange = ({ target }) => {
     const { name, value } = target;
@@ -23,39 +28,91 @@ export const ContactForm = () => {
     setContactInfo(formInitialState);
   };
 
-  const sendMail = () => {
-    console.log(contactInfo);
+  const getCredentials = () => {
+    const credentials = query(collection(db, "tokens"));
+    onSnapshot(credentials, (querySnapshot) => {
+      const credentials = [];
+      querySnapshot.docs.map((item) => credentials.push(item.data()));
+      setMailCredentials(credentials);
+    });
   };
 
-  const { name, lastname, mail, phone, company, msg } = contactInfo;
+  React.useEffect(async () => {
+    console.log("fetching redentials");
+    getCredentials();
+  }, []);
+
+  const handleSendContactForm = () => {
+    if (validateForm()) {
+      emailjs
+        .sendForm(
+          "contactForm-RegulSA",
+          "template_7pr6h4t",
+          form.current,
+          mailCredentials[0].userID
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            if (result.text === "OK") {
+              alert(`${from_name}, tu mail ha sido enviado con exito`);
+              resetForm();
+            } else {
+              alert(
+                `${from_name}, ha ocurrido un problema, no se pudo enviar el mail`
+              );
+            }
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    } else {
+      alert("Asegurate de llenar todos los campos obligatorios para enviar");
+    }
+  };
+
+  const validateForm = () => {
+    const { from_name, from_lastname, email, phone, company, msg } =
+      contactInfo;
+    return (
+      from_name !== "" &&
+      from_lastname !== "" &&
+      email !== "" &&
+      msg !== "" &&
+      phone !== ""
+    );
+  };
+
+  const { from_name, from_lastname, email, phone, company, msg } = contactInfo;
   return (
     <div className="contactFormWrapper">
-      <form onSubmit={() => false}>
+      <form ref={form} onSubmit={() => false}>
         <label htmlFor="nameInput">
-          Nombre:
-          <br />{" "}
+          Nombre*:
+          <br />
           <input
             type="text"
             id="nameInput"
-            value={name}
-            name="name"
+            value={from_name}
+            name="from_name"
             onChange={handleInfoChange}
           />
         </label>
         <label htmlFor="lastNameInput">
-          Apellido:
-          <br />{" "}
+          Apellido*:
+          <br />
           <input
             type="text"
             id="lastNameInput"
-            value={lastname}
-            name="lastname"
+            value={from_lastname}
+            name="from_lastname"
             onChange={handleInfoChange}
           />
         </label>
         <label htmlFor="mailInput">
           Empresa:
-          <br />{" "}
+          <br />
           <input
             type="text"
             id="mailInput"
@@ -65,19 +122,19 @@ export const ContactForm = () => {
           />
         </label>
         <label htmlFor="companyInput">
-          Correo:
-          <br />{" "}
+          Correo*:
+          <br />
           <input
             type="email"
             id="companyInput"
-            value={mail}
-            name="mail"
+            value={email}
+            name="email"
             onChange={handleInfoChange}
           />
         </label>
         <label htmlFor="phoneInput">
-          Teléfono:
-          <br />{" "}
+          Teléfono*:
+          <br />
           <input
             type="text"
             id="phoneInput"
@@ -87,7 +144,7 @@ export const ContactForm = () => {
           />
         </label>
         <label htmlFor="messageInput">
-          Consulta:
+          Consulta*:
           <br />
           <textarea
             id="messageInput"
@@ -98,7 +155,7 @@ export const ContactForm = () => {
           />
         </label>
         <div className="buttons">
-          <div className="submitButton" onClick={sendMail}>
+          <div className="submitButton" onClick={handleSendContactForm}>
             Enviar
           </div>
           <div className="resetFormButton" onClick={resetForm}>
