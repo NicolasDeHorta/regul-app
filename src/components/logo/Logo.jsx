@@ -4,28 +4,28 @@ import './logo.scss';
 export const Logo = () => {
 	return (
 		<div className="logoWrapper">
-			<div class="scene">
-				<div class="light">
-					<div class="clip">
-						<div class="container">
+			<div className="scene">
+				<div className="light">
+					<div className="clip">
+						<div className="container">
 							{/* <!-- X Axis --> */}
-							<div class="circle border"></div>
-							<div class="circle border"></div>
-							<div class="circle border"></div>
-							<div class="circle border"></div>
-							<div class="circle border"></div>
+							<div className="circle border"></div>
+							<div className="circle border"></div>
+							<div className="circle border"></div>
+							<div className="circle border"></div>
+							<div className="circle border"></div>
 							{/* <!-- Y Axis --> */}
-							<div class="circle border"></div>
-							<div class="circle border"></div>
-							<div class="circle border"></div>
-							<div class="circle border"></div>
-							<div class="circle border"></div>
+							<div className="circle border"></div>
+							<div className="circle border"></div>
+							<div className="circle border"></div>
+							<div className="circle border"></div>
+							<div className="circle border"></div>
 							{/* <!-- Z Axis --> */}
-							<div class="circle"></div>
-							<div class="circle"></div>
-							<div class="circle"></div>
-							<div class="circle"></div>
-							<div class="circle"></div>
+							<div className="circle"></div>
+							<div className="circle"></div>
+							<div className="circle"></div>
+							<div className="circle"></div>
+							<div className="circle"></div>
 						</div>
 					</div>
 				</div>

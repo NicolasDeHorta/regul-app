@@ -1,33 +1,15 @@
-import { useState } from 'react';
+import React from 'react';
+import { AddCotizacionForm } from '../addCotizacionForm/AddCotizacionForm';
 import { useDataStore } from '../context/context';
+
 import './cotizaciones.scss';
 
-const initialCotizacionesState = [
-	{
-		moneda: 'Dolar',
-		compra: 43.2,
-		venta: 45.7,
-	},
-	{
-		moneda: 'Peso',
-		compra: 0.1,
-		venta: 0.3,
-	},
-	{
-		moneda: 'Real',
-		compra: 7.5,
-		venta: 9.0,
-	},
-	{
-		moneda: 'Euro',
-		compra: 49.2,
-		venta: 52.7,
-	},
-];
-
 export const Cotizaciones = () => {
-	const { adminMode } = useDataStore();
-	const [cotizaciones, setCotizaciones] = useState(initialCotizacionesState);
+	const { adminMode, cotizDB, getCotizDB } = useDataStore();
+
+	React.useEffect(() => {
+		getCotizDB();
+	}, []);
 
 	const handleAddCotizacion = (moneda, compra, venta) => {
 		const newCotizacion = {
@@ -35,21 +17,21 @@ export const Cotizaciones = () => {
 			compra: compra,
 			venta: venta,
 		};
-
-		setCotizaciones([...cotizaciones, newCotizacion]);
 	};
 	return (
 		<div className="cotizacionesWrapper">
 			<table>
 				<thead>
-					<th>&nbsp;</th>
-					<th>Compra</th>
-					<th>Venta</th>
+					<tr>
+						<th>&nbsp;</th>
+						<th>Compra</th>
+						<th>Venta</th>
+					</tr>
 				</thead>
 				<tbody>
-					{cotizaciones.map((moneda) => {
+					{cotizDB.map((moneda) => {
 						return (
-							<tr>
+							<tr key={moneda.moneda}>
 								<td>{moneda.moneda}</td>
 								<td>{moneda.compra.toFixed(2)}</td>
 								<td>{moneda.venta.toFixed(2)}</td>
@@ -59,11 +41,7 @@ export const Cotizaciones = () => {
 				</tbody>
 			</table>
 
-			{adminMode && (
-				<button onClick={() => handleAddCotizacion('Yen', 55, 32)}>
-					Agregar
-				</button>
-			)}
+			{adminMode && <AddCotizacionForm />}
 		</div>
 	);
 };
