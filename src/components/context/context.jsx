@@ -1,54 +1,70 @@
-import * as React from 'react';
-import { db } from '../../firebase';
-import { doc, collection, query, onSnapshot } from 'firebase/firestore';
+import * as React from "react";
+import { db } from "../../firebase";
+import { doc, setDoc, collection, query, onSnapshot } from "firebase/firestore";
 
 const DataStore = React.createContext();
 export const useDataStore = () => {
-	return React.useContext(DataStore);
+  return React.useContext(DataStore);
+};
+
+export const blankCotiz = {
+  moneda: "",
+  compra: 0,
+  venta: 0,
 };
 
 export const ContextProvider = ({ children }) => {
-	const [adminMode, setAdminMode] = React.useState(false);
-	const [cotizDB, setCotizDB] = React.useState([]);
+  const [editMode, setEditMode] = React.useState(false);
+  const [currentCotiz, setCurrentCotiz] = React.useState(blankCotiz);
+  const [adminMode, setAdminMode] = React.useState(false);
+  const [cotizDB, setCotizDB] = React.useState([]);
 
-	const adminAccess = () => {
-		setAdminMode(true);
-	};
+  const adminAccess = () => {
+    setAdminMode(true);
+  };
 
-	const adminLogout = () => {
-		setAdminMode(false);
-	};
+  const adminLogout = () => {
+    setAdminMode(false);
+  };
 
-	const getCotizDB = () => {
-		const cotiz = query(collection(db, 'cotizaciones'));
-		onSnapshot(cotiz, (querySnapshot) => {
-			const allCotiz = [];
-			querySnapshot.docs.map((item) => allCotiz.push(item.data()));
-			setCotizDB(allCotiz);
-		});
-	};
+  const getCotizDB = () => {
+    const cotiz = query(collection(db, "cotizaciones"));
+    onSnapshot(cotiz, (querySnapshot) => {
+      const allCotiz = [];
+      querySnapshot.docs.map((item) => allCotiz.push(item.data()));
+      setCotizDB(allCotiz);
+    });
+  };
 
-	const addCotiz = () => {
-		console.log('Added ');
-	};
+  const addCotiz = async (cotiz) => {
+    await setDoc(doc(db, "cotizaciones", cotiz.moneda), {
+      moneda: cotiz.moneda,
+      compra: parseFloat(cotiz.compra),
+      venta: parseFloat(cotiz.venta),
+    });
+  };
 
-	React.useEffect(async () => {
-		console.log('fetching cotizaciones');
-		getCotizDB();
-	}, []);
+  React.useEffect(async () => {
+    console.log("fetching cotizaciones");
+    getCotizDB();
+  }, []);
 
-	return (
-		<DataStore.Provider
-			value={{
-				adminAccess,
-				adminLogout,
-				adminMode,
-				cotizDB,
-				getCotizDB,
-				addCotiz,
-			}}
-		>
-			{children}
-		</DataStore.Provider>
-	);
+  return (
+    <DataStore.Provider
+      value={{
+        editMode,
+        setEditMode,
+        currentCotiz,
+        setCurrentCotiz,
+        adminAccess,
+        adminLogout,
+        adminMode,
+        cotizDB,
+        getCotizDB,
+        addCotiz,
+      }}
+    >
+      {children}
+    </DataStore.Provider>
+  );
 };

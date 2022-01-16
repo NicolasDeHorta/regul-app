@@ -1,43 +1,56 @@
-import React from 'react';
-import { useDataStore } from '../context/context';
+import React from "react";
+import { useDataStore, blankCotiz } from "../context/context";
 
-import './addCotizacionForm.scss';
+import "./addCotizacionForm.scss";
 
-const initialState = {
-	moneda: '',
-	compra: 0,
-	venta: 0,
-};
 export const AddCotizacionForm = () => {
-	const { addCotiz } = useDataStore();
-	const [moneda, setMoneda] = React.useState(initialState);
+  const { addCotiz, editMode, setEditMode, currentCotiz, setCurrentCotiz } =
+    useDataStore();
 
-	const handleInputs = ({ target }) => {
-		const { value, name } = target;
-		setMoneda({ ...moneda, [name]: value });
-	};
+  const handleInputs = ({ target }) => {
+    const { value, name } = target;
+    setCurrentCotiz({ ...currentCotiz, [name]: value });
+  };
 
-	return (
-		<div className="addEditCotizForm">
-			<input
-				type="text"
-				name="moneda"
-				value={moneda.moneda}
-				onChange={handleInputs}
-			/>
-			<input
-				type="number"
-				name="compra"
-				value={moneda.compra}
-				onChange={handleInputs}
-			/>
-			<input
-				type="number"
-				name="venta"
-				value={moneda.venta}
-				onChange={handleInputs}
-			/>
-			<button onClick={addCotiz}> Agregar</button>
-		</div>
-	);
+  const handleSubmit = (e) => {
+    addCotiz(currentCotiz);
+    setCurrentCotiz(blankCotiz);
+    if (editMode) setEditMode(false);
+  };
+
+  const handleEnter = (event) => {
+    if (event.key === "Enter") handleSubmit();
+  };
+
+  return (
+    <div className="addEditCotizForm">
+      <input
+        type="text"
+        name="moneda"
+        value={currentCotiz.moneda}
+        onChange={handleInputs}
+        onKeyPress={handleEnter}
+      />
+      <input
+        type="number"
+        name="compra"
+        value={currentCotiz.compra}
+        step={0.01}
+        onChange={handleInputs}
+        onKeyPress={handleEnter}
+      />
+      <input
+        type="number"
+        name="venta"
+        value={currentCotiz.venta}
+        step={0.01}
+        onChange={handleInputs}
+        onKeyPress={handleEnter}
+      />
+      <button onClick={handleSubmit} onPressEnter={handleSubmit}>
+        {" "}
+        {editMode ? "Editar" : "Agregar"}
+      </button>
+    </div>
+  );
 };

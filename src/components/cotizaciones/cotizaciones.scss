@@ -1,39 +1,63 @@
 .cotizacionesWrapper {
-	padding: 1rem;
-	margin: 1rem 5rem;
-	border: solid gray 1px;
-	display: inline-flex;
-	flex-direction: column;
-	justify-content: center;
-	border-radius: 1rem;
-	font-size: 1.1rem;
-	background: var(--backgroundPrimaryColor);
-	transition: background 150ms ease-in;
+  padding: 1rem;
+  margin: 1rem 5rem;
+  border: solid gray 1px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  background: var(--backgroundPrimaryColor);
+  transition: background 150ms ease-in;
 
-	&:hover {
-		background: var(--backgroundPrimaryColorOpaque);
-	}
+  &:hover {
+    background: var(--backgroundPrimaryColorOpaque);
+  }
+}
+
+.editText {
+  font-size: 0.8rem;
+  color: rgb(74, 74, 253);
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+  transition: color 200ms ease-in-out;
+
+  &:hover {
+    color: lightskyblue;
+  }
+}
+
+.deleteText {
+  font-size: 0.8rem;
+  color: rgb(253, 74, 74);
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+  transition: color 200ms ease-in-out;
+
+  &:hover {
+    color: rgb(255, 4, 4);
+  }
 }
 
 table {
-	border-collapse: collapse;
-	text-align: center;
+  border-collapse: collapse;
+  text-align: left;
 
-	td,
-	th {
-		padding: 1.5rem;
-	}
+  td,
+  th {
+    padding: 1.5rem;
+  }
 
-	tr {
-		border-bottom: solid 1px grey;
-		transition: background-color 100ms ease-in-out;
+  tr {
+    border-bottom: solid 1px grey;
+    transition: background-color 100ms ease-in-out;
 
-		&:last-child {
-			border-bottom: none;
-		}
+    &:last-child {
+      border-bottom: none;
+    }
 
-		&:hover {
-			background: #cccccc22;
-		}
-	}
+    &:hover {
+      background: #cccccc22;
+    }
+  }
 }
