@@ -61,3 +61,13 @@ table {
     }
   }
 }
+
+.loadingBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    margin-right: 2rem;
+  }
+}

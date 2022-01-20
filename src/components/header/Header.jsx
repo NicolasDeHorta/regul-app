@@ -22,9 +22,6 @@ export const Header = () => {
           <Link to="/contact-form">
             <li>Contact</li>
           </Link>
-          {/* <Link to="/complains-form">
-						<li>Formulario de quejas</li>
-					</Link> */}
         </ul>
       </div>
     </div>

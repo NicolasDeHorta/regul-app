@@ -4,8 +4,7 @@ import { useDataStore, blankCotiz } from "../context/context";
 import "./addCotizacionForm.scss";
 
 export const AddCotizacionForm = () => {
-  const { addCotiz, editMode, setEditMode, currentCotiz, setCurrentCotiz } =
-    useDataStore();
+  const { addCotiz, editMode, currentCotiz, setCurrentCotiz } = useDataStore();
 
   const handleInputs = ({ target }) => {
     const { value, name } = target;
@@ -15,7 +14,6 @@ export const AddCotizacionForm = () => {
   const handleSubmit = (e) => {
     addCotiz(currentCotiz);
     setCurrentCotiz(blankCotiz);
-    if (editMode) setEditMode(false);
   };
 
   const handleEnter = (event) => {
@@ -47,10 +45,7 @@ export const AddCotizacionForm = () => {
         onChange={handleInputs}
         onKeyPress={handleEnter}
       />
-      <button onClick={handleSubmit} onPressEnter={handleSubmit}>
-        {" "}
-        {editMode ? "Editar" : "Agregar"}
-      </button>
+      <button onClick={handleSubmit}> {editMode ? "Editar" : "Agregar"}</button>
     </div>
   );
 };

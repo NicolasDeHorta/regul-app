@@ -3,36 +3,33 @@ import { AddCotizacionForm } from "../addCotizacionForm/AddCotizacionForm";
 import { blankCotiz, useDataStore } from "../context/context";
 import { db } from "../../firebase";
 import { doc, deleteDoc } from "firebase/firestore";
+import RiseLoader from "react-spinners/ClipLoader";
 
 import "./cotizaciones.scss";
 
 export const Cotizaciones = () => {
-  const {
-    adminMode,
-    cotizDB,
-    getCotizDB,
-    setEditMode,
-    currentCotiz,
-    setCurrentCotiz,
-  } = useDataStore();
+  const { adminMode, cotizDB, getCotizDB, setCurrentCotiz } = useDataStore();
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(async () => {
+    await getCotizDB();
+  });
 
   React.useEffect(() => {
-    getCotizDB();
-  }, []);
+    if (cotizDB.length > 0) setLoading(false);
+  }, [cotizDB.length]);
 
   const handleEditMode = (moneda) => {
-    setEditMode(true);
     setCurrentCotiz(moneda);
   };
 
   const handleDelete = (moneda) => {
     deleteDoc(doc(db, "cotizaciones", moneda.moneda));
-    setEditMode(false);
     setCurrentCotiz(blankCotiz);
   };
 
-  return (
-    <div className="cotizacionesWrapper">
+  const showTable = () => {
+    return (
       <table>
         <thead>
           <tr>
@@ -46,7 +43,6 @@ export const Cotizaciones = () => {
             return (
               <tr key={moneda.moneda}>
                 <td>
-                  {" "}
                   {adminMode && (
                     <>
                       <span
@@ -72,6 +68,19 @@ export const Cotizaciones = () => {
           })}
         </tbody>
       </table>
+    );
+  };
+
+  return (
+    <div className="cotizacionesWrapper">
+      {loading ? (
+        <div className="loadingBlock">
+          <span>Cargando Cotizaciones </span>
+          <RiseLoader loading={loading} />
+        </div>
+      ) : (
+        showTable()
+      )}
 
       {adminMode && <AddCotizacionForm />}
     </div>

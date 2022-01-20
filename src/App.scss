@@ -1,50 +1,51 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-	--backgroundPrimaryColor: rgba(22, 22, 22, 0.8);
-	--backgroundPrimaryColorOpaque: rgba(22, 22, 22);
-	--backgroundAccentColor: rgba(47, 47, 47, 0.8);
-	--secondaryBackgroundColor: #00000033;
-	background-color: #282c34;
+  --backgroundPrimaryColor: rgba(22, 22, 22, 0.8);
+  --backgroundPrimaryColorOpaque: rgba(22, 22, 22);
+  --backgroundAccentColor: rgba(47, 47, 47, 0.8);
+  --secondaryBackgroundColor: #00000033;
+  background-color: #282c34;
+  z-index: -10;
 }
 
 .App {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	position: relative;
-	text-align: center;
-	flex-direction: column;
-	color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  flex-direction: column;
+  color: white;
 }
 
 :root::before {
-	content: '';
-	background: url('./assets/img/regul-background.gif');
-	background-size: cover;
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-	left: 0px;
-	opacity: 0.3;
+  content: "";
+  background: url("./assets/img/regul-background.gif");
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.3;
 }
 
 .AppBody {
-	position: relative;
-	color: #ffffff;
-	line-height: 0.9;
-	text-align: center;
-	width: 80%;
+  position: relative;
+  color: #ffffff;
+  line-height: 0.9;
+  text-align: center;
+  width: 80%;
 }
 
 @media only screen and (max-width: 800px) {
-	.AppBody {
-		width: 100%;
-	}
+  .AppBody {
+    width: 100%;
+  }
 }

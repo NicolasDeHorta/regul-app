@@ -1,3 +1,5 @@
+@import "../../assets/styles/mixins.scss";
+
 .fileCardLink {
   text-decoration: none;
   color: white;
@@ -52,4 +54,11 @@
     width: 5rem;
     height: 5rem;
   }
+}
+
+.deleteFileButton {
+  @include buttonStyle(#a80303, #fa0a0a);
+  width: 2rem;
+  margin-left: auto;
+  position: relative;
 }

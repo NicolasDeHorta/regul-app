@@ -21,10 +21,12 @@ export const ContextProvider = ({ children }) => {
 
   const adminAccess = () => {
     setAdminMode(true);
+    sessionStorage.setItem("isAdmin", true);
   };
 
   const adminLogout = () => {
     setAdminMode(false);
+    sessionStorage.setItem("isAdmin", false);
   };
 
   const getCotizDB = () => {
@@ -49,11 +51,22 @@ export const ContextProvider = ({ children }) => {
     getCotizDB();
   }, []);
 
+  React.useEffect(() => {
+    sessionStorage.getItem("isAdmin")
+      ? setAdminMode(true)
+      : setAdminMode(false);
+  }, [sessionStorage.getItem("isAdmin")]);
+
+  React.useEffect(async () => {
+    cotizDB.filter((item) => item.moneda === currentCotiz.moneda).length > 0
+      ? setEditMode(true)
+      : setEditMode(false);
+  }, [currentCotiz]);
+
   return (
     <DataStore.Provider
       value={{
         editMode,
-        setEditMode,
         currentCotiz,
         setCurrentCotiz,
         adminAccess,
