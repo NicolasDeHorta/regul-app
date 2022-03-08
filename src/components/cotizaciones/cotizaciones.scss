@@ -46,6 +46,12 @@ table {
   td,
   th {
     padding: 1.5rem;
+    white-space: nowrap;
+    flex-grow: 1fr;
+
+    &:first-child {
+      flex-grow: 2fr;
+    }
   }
 
   tr {
