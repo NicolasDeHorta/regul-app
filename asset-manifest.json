@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/regul-app/static/css/main.a5b32725.css",
+    "main.css": "/regul-app/static/css/main.9d348057.css",
     "main.js": "/regul-app/static/js/main.b5a2e5f6.js",
     "static/media/cambio18.jpg": "/regul-app/static/media/cambio18.1e259c0f92bd339ddeb4.jpg",
     "static/media/regul-background.gif": "/regul-app/static/media/regul-background.043259378b871e0a9656.gif",
     "static/media/file_img.png": "/regul-app/static/media/file_img.6c65b8c35191fbe499ed.png",
     "index.html": "/regul-app/index.html",
-    "main.a5b32725.css.map": "/regul-app/static/css/main.a5b32725.css.map",
+    "main.9d348057.css.map": "/regul-app/static/css/main.9d348057.css.map",
     "main.b5a2e5f6.js.map": "/regul-app/static/js/main.b5a2e5f6.js.map"
   },
   "entrypoints": [
-    "static/css/main.a5b32725.css",
+    "static/css/main.9d348057.css",
     "static/js/main.b5a2e5f6.js"
   ]
 }
